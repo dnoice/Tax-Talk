@@ -1,0 +1,372 @@
+/* --- Vintage Cost Theme - V5 (Hover Test) --- */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* Define Variables */
+:root {
+    /* Fonts */
+    --font-body: 'Open Sans', sans-serif;
+    --font-heading: 'Bitter', serif;
+
+    /* Colors (Inspired Palette - Gold slightly desaturated) */
+    --color-background: #2d343e;
+    --color-surface: #3a4750;
+    --color-text: #e0e0e0;
+    --color-text-muted: #a0a0a0;
+    --color-heading: #f5f5f5;
+    --color-accent-gold: #c1a34d; /* Slightly less saturated gold */
+    --color-accent-orange: #d77a61;
+    --color-border: #525f6b;
+    --color-shadow: rgba(0, 0, 0, 0.4);
+    --color-texture: rgba(0, 0, 0, 0.05);
+
+    /* Sizes & Spacing */
+    --spacing-unit: 1rem;
+    --max-content-width: 800px;
+    --border-radius: 3px;
+    --line-height-body: 1.6;
+    --line-height-heading: 1.3;
+
+    /* Transitions */
+    --transition-std: 0.25s ease-out;
+    --transition-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* General Reset & Body */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--spacing-unit) * 3);
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    position: relative;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    background-image: url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">\
+        <filter id="noise">\
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>\
+        <feComponentTransfer><feFuncA type="table" tableValues="0 0.05 0"/></feComponentTransfer>\
+        </filter>\
+        <rect width="100%" height="100%" filter="url(%23noise)"/>\
+        </svg>');
+    opacity: 0.06;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Container and Layout */
+.article-container {
+    display: block;
+    max-width: var(--max-content-width);
+    margin: calc(var(--spacing-unit) * 3) auto;
+    padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 3);
+    background-color: var(--color-surface);
+    border: 1px solid #1e2228;
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.4),
+                0 8px 25px var(--color-shadow);
+    position: relative;
+    z-index: 1;
+}
+
+/* Header Styling */
+.article-header {
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    padding-bottom: calc(var(--spacing-unit) * 1.5);
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.article-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 1.4rem + 2vw, 2.8rem);
+    color: var(--color-heading);
+    line-height: var(--line-height-heading);
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+    font-weight: 700;
+}
+
+.article-header .subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1rem);
+    color: var(--color-text-muted);
+    font-style: normal;
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    border: none;
+    padding-left: 0;
+    max-width: 55ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Article Content Area */
+.article-content section {
+    margin-bottom: calc(var(--spacing-unit) * 2.5);
+    padding-top: calc(var(--spacing-unit) * 0.5);
+    position: relative;
+}
+.article-content section:not(:last-of-type)::after {
+    content: '***';
+    display: block;
+    text-align: center;
+    color: var(--color-border);
+    font-size: 1.2em;
+    margin: calc(var(--spacing-unit) * 2.5) auto 0 auto;
+    letter-spacing: 0.5em;
+}
+
+
+/* Headings within Content */
+.article-content h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
+    color: var(--color-accent-gold);
+    margin-top: calc(var(--spacing-unit) * 2);
+    margin-bottom: calc(var(--spacing-unit) * 1);
+    line-height: var(--line-height-heading);
+    font-weight: 700;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: calc(var(--spacing-unit) * 0.4);
+    position: relative;
+}
+.article-content h3::before {
+   display: none;
+}
+
+
+/* Paragraphs */
+.article-content p {
+    margin-bottom: calc(var(--spacing-unit) * 1.1);
+}
+
+/* Links */
+.article-content a {
+    color: var(--color-accent-gold);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dashed var(--color-accent-gold);
+    transition: color var(--transition-std), border-color var(--transition-std);
+    padding-bottom: 1px;
+    background: none;
+    background-size: auto;
+}
+.article-content a:hover,
+.article-content a:focus {
+    color: var(--color-accent-orange);
+    border-bottom-color: var(--color-accent-orange);
+    background-size: auto;
+}
+
+/* Lists */
+.article-content ul,
+.article-content ol {
+    margin-left: calc(var(--spacing-unit) * 1);
+    margin-bottom: calc(var(--spacing-unit) * 1.1);
+    padding-left: calc(var(--spacing-unit) * 1.5);
+}
+.article-content li {
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+    padding-left: calc(var(--spacing-unit) * 0.5);
+    position: relative;
+}
+.article-content ul {
+    list-style-type: none;
+}
+.article-content ul li::before {
+    content: '';
+    position: absolute;
+    left: -0.3em;
+    top: 0.6em;
+    width: 5px;
+    height: 5px;
+    background-color: var(--color-accent-orange);
+    border-radius: 0;
+    transform: rotate(45deg);
+    transition: transform var(--transition-std), background-color var(--transition-std);
+    box-shadow: none;
+}
+.article-content ul li:hover::before {
+    transform: rotate(135deg) scale(1.2);
+    background-color: var(--color-accent-gold);
+}
+
+.article-content ol {
+    list-style-type: decimal;
+    padding-left: calc(var(--spacing-unit) * 2);
+}
+.article-content ol li::before {
+   display: none;
+}
+.article-content ol li::marker {
+    color: var(--color-accent-gold);
+    font-weight: 700;
+    font-family: var(--font-heading);
+}
+
+
+.article-content li > strong {
+    color: var(--color-heading);
+}
+
+/* Emphasis and Strong */
+.article-content em {
+    font-style: italic;
+    color: var(--color-text);
+}
+.article-content strong {
+    font-weight: 700;
+    color: var(--color-heading);
+}
+
+/* --- Image Styling (Vintage Feel - Hover Test) --- */
+.parallax-image-wrapper {
+    display: block;
+    margin: calc(var(--spacing-unit) * 2.5) auto;
+    max-width: 100%;
+}
+img.responsive-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.4),
+                 0 5px 15px var(--color-shadow);
+    /* Transition only filter */
+    transition: filter var(--transition-smooth);
+    /* JS still handles transform */
+    will-change: transform, filter; /* Update will-change */
+    filter: saturate(0.9);
+}
+/* --- Simplified Image Hover (No Shadow Change) --- */
+.parallax-image-wrapper:hover img.responsive-image,
+img.responsive-image:hover {
+    /* Transform handled by JS */
+    /* Keep existing shadow */
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.4),
+                 0 5px 15px var(--color-shadow);
+    border-color: var(--color-border); /* No border color change */
+    filter: saturate(1.0); /* Restore saturation only */
+    z-index: auto;
+    position: static;
+    outline: none !important; /* Force remove outline */
+}
+img.hero-image {
+    border: none;
+    box-shadow: none;
+    margin: 0 auto calc(var(--spacing-unit) * 2) auto;
+    border-radius: var(--border-radius);
+    filter: none;
+    will-change: auto;
+}
+img.hero-image:hover {
+    /* No hover effects for hero */
+    transform: none;
+    box-shadow: none;
+    border-color: transparent;
+    filter: none;
+}
+
+
+/* Footer */
+.article-footer {
+    margin-top: calc(var(--spacing-unit) * 3);
+    padding: calc(var(--spacing-unit) * 1.2) calc(var(--spacing-unit) * 2);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    background-color: transparent;
+    position: static;
+    width: auto;
+    border-radius: 0;
+    box-shadow: none;
+}
+.article-footer p {
+     font-family: var(--font-heading);
+     letter-spacing: 1px;
+     color: var(--color-border);
+}
+
+/* Scroll Animation Base Styles */
+.animated-section {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.7s var(--transition-smooth), transform 0.7s var(--transition-smooth);
+  will-change: opacity, transform;
+}
+
+.animated-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Specific Media Query for 450px Viewport */
+@media (max-width: 450px) {
+    html {
+        font-size: 95%;
+    }
+    .article-container {
+        margin: calc(var(--spacing-unit) * 1.5) 0;
+        padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 1.2);
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        box-shadow: inset 0 0 8px rgba(0,0,0,0.4),
+                    0 3px 10px var(--color-shadow);
+    }
+    .article-header h2 {
+        font-size: clamp(1.6rem, 1.3rem + 1.5vw, 2.2rem);
+    }
+     .article-header .subtitle {
+        font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+    }
+     .article-content h3 {
+        font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.6rem);
+     }
+     .parallax-image-wrapper {
+        margin-top: calc(var(--spacing-unit) * 2);
+        margin-bottom: calc(var(--spacing-unit) * 2);
+     }
+     img.content-image {
+         max-width: 100%;
+         box-shadow: 0 5px 15px var(--color-shadow);
+     }
+     /* Mobile Hover Test */
+     .parallax-image-wrapper:hover img.content-image,
+     img.responsive-image:hover {
+        /* Transform handled by JS reset */
+        box-shadow: inset 0 0 3px rgba(0,0,0,0.4), /* Keep base shadow */
+                 0 5px 15px var(--color-shadow);
+        border-color: var(--color-border); /* No border change */
+        filter: saturate(1.0); /* Restore saturation */
+        outline: none !important;
+        z-index: auto;
+        position: static;
+     }
+
+     .article-content ol {
+         padding-left: calc(var(--spacing-unit) * 1.5);
+     }
+     .article-footer {
+        padding: calc(var(--spacing-unit));
+     }
+}
